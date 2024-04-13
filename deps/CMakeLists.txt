@@ -1,7 +1,15 @@
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+
+# https://github.com/libsdl-org/SDL
+set(SDL_LIBC ON CACHE BOOL "" FORCE)
+set(SDL_TEST OFF CACHE BOOL "" FORCE)
+add_subdirectory(SDL)
+
 # Define IMGUI Settings
 function (ADD_IMGUI target)
 
     set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/deps/imgui")
+    set(SDL_DIR "${CMAKE_SOURCE_DIR}/deps/SDL")
 
     target_sources(${target}
         PRIVATE
@@ -15,19 +23,18 @@ function (ADD_IMGUI target)
             ${IMGUI_DIR}/backends/imgui_impl_sdlrenderer2.cpp
     )
 
-    find_package(SDL2 REQUIRED)
-
     target_include_directories(${target}
         PRIVATE
             ${IMGUI_DIR}
             ${IMGUI_DIR}/backends
 
-            ${SDL2_INCLUDE_DIRS}
+            ${SDL_DIR}/include
     )
 
     target_link_libraries(${target}
         PRIVATE
-            ${SDL2_LIBRARIES}
+            SDL2::SDL2
+            SDL2::SDL2main
     )
 
 endfunction()

@@ -12,6 +12,10 @@ add_subdirectory(src/graphics)
 ADD_IMGUI(engine)
 target_link_libraries(engine
     PRIVATE
-        glm::glm
         glog::glog
+)
+
+install(TARGETS
+    engine
+    SDL2
 )
