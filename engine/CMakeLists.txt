@@ -1,5 +1,6 @@
 
 add_executable(engine
+    src/engine.cpp
     src/main.cpp
 )
 target_include_directories(engine

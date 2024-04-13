@@ -1,0 +1,4 @@
+Major Systems
+[ ] Load Sprites
+[ ] Draw Sprites to Screen
+[ ] Camera movement

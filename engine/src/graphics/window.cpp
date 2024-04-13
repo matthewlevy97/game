@@ -1,6 +1,5 @@
-#include <glog/logging.h>
-
 #include "graphics/window.h"
+#include "logging.h"
 
 #if !SDL_VERSION_ATLEAST(2,0,17)
 #error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
@@ -114,13 +113,13 @@ bool Window::setupSDL()
         window_flags);
     if (m_Window == nullptr) {
         LOG(FATAL) << "SDL_CreateWindow(): " << SDL_GetError();
-        return -1;
+        return false;
     }
 
     m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
     if (m_Renderer == nullptr) {
         LOG(FATAL) << "Error creating SDL_Renderer!";
-        return 0;
+        return false;
     }
     SDL_RendererInfo info;
     SDL_GetRendererInfo(m_Renderer, &info);
@@ -169,6 +168,7 @@ bool Window::setupSDL()
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != nullptr);
 
+    LOG(INFO) << "SDL Setup Complete";
     return true;
 }
 
