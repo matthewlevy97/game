@@ -5,9 +5,10 @@
 #error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
 #endif
 
-namespace graphics {
+namespace engine::graphics {
 
-Window::Window(const std::string& title) : m_RunGraphicsLoop(false), m_WindowTitle(title), m_WindowScale(80)
+Window::Window(const std::string& title, const engine::Update& updater)
+    : m_WindowTitle(title), m_UpdateController(updater), m_RunGraphicsLoop(false), m_WindowScale(80)
 {
     setupSDL();
 }
@@ -82,6 +83,9 @@ void Window::StartGraphicsLoop()
             (Uint8)(clear_color.w * 255));
         SDL_RenderClear(m_Renderer);
 
+        // Run per loop update
+        m_UpdateController.RunUpdate(io.DeltaTime);
+
         // Run game loop renderer
         m_GameRenderer.Frame(m_Renderer);
         
@@ -92,7 +96,7 @@ void Window::StartGraphicsLoop()
     m_RunGraphicsLoop = false;
 }
 
-bool Window::setupSDL()
+bool Window::setupSDL(bool enableVSync)
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
         LOG(FATAL) << "Error Initializing SDL " << SDL_GetError();
@@ -116,7 +120,8 @@ bool Window::setupSDL()
         return false;
     }
 
-    m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
+    m_Renderer = SDL_CreateRenderer(m_Window, -1,
+        SDL_RENDERER_ACCELERATED | (enableVSync ? SDL_RENDERER_PRESENTVSYNC : 0));
     if (m_Renderer == nullptr) {
         LOG(FATAL) << "Error creating SDL_Renderer!";
         return false;
@@ -179,4 +184,4 @@ void Window::updateGUIWindows(const ImGuiIO& io)
     ImGui::End();
 }
 
-}; // namespace graphics
+}; // namespace engine::graphics

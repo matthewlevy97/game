@@ -1,9 +1,9 @@
 #include "engine.h"
 
+#include <iostream>
+
 int main(int argc, char **argv)
 {
-    auto engine = Engine::makeEngine();
-    engine->Run();
-
-    return 0;
+    auto engine = engine::Engine::makeEngine();
+    return engine->Run();
 }

@@ -1,9 +1,15 @@
 #include "engine.h"
 #include "logging.h"
 
+#include <chrono>
+#include <thread>
+
+namespace engine {
+
 Engine::Engine(const std::string& title)
 {
-	m_GameWindow = new graphics::Window(title);
+	m_Updater = Update();
+	m_GameWindow = new graphics::Window(title, m_Updater);
 
 	LOG(INFO) << "Game Engine Initialized";
 }
@@ -15,11 +21,25 @@ Engine::~Engine()
 	}
 }
 
-void Engine::Run()
+int Engine::Run()
 {
 	CHECK(m_GameWindow != nullptr);
 
+	bool runUpdateLoop = true;
+	auto th = std::thread([&]() {
+		auto& updater = this->m_Updater;
+		do {
+			updater.RunFixedUpdate();
+			std::this_thread::sleep_for(std::chrono::milliseconds(updater.FixedUpdateMs()));
+		} while (runUpdateLoop);
+	});
+	
 	m_GameWindow->StartGraphicsLoop();
+
+	runUpdateLoop = false;
+	th.join();
+
+	return 0;
 }
 
 std::unique_ptr<Engine> Engine::makeEngine()
@@ -34,3 +54,5 @@ std::unique_ptr<Engine> Engine::makeEngine()
 
 	return std::unique_ptr<Engine>(new Engine("Game Engine"));
 }
+
+}; // namespace engine

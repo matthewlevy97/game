@@ -8,6 +8,7 @@ target_include_directories(engine
         ${CMAKE_CURRENT_SOURCE_DIR}/include/
 )
 
+add_subdirectory(src/core)
 add_subdirectory(src/graphics)
 
 ADD_IMGUI(engine)

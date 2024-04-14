@@ -2,6 +2,8 @@
 
 #include "logging.h"
 
+#include <unordered_map>
+
 namespace engine {
 
 	using GameObjectID = std::uint32_t;
@@ -26,6 +28,9 @@ namespace engine {
 
 
 	class GameObjectManager {
+	private:
+		GameObjectID m_maxID;
+		std::unordered_map<GameObjectID, GameObject*> m_GameObjects;
 	public:
 		GameObjectManager();
 		~GameObjectManager();

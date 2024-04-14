@@ -3,18 +3,27 @@
 #include <memory>
 #include <string>
 
+#include "core/update.h"
 #include "graphics/window.h"
 
-class Engine {
-private:
-	graphics::Window* m_GameWindow;
+namespace engine {
 
-	Engine(const std::string&);
+	class Engine {
+	private:
+		graphics::Window* m_GameWindow;
 
-public:
-	~Engine();
+		Update m_Updater;
 
-	void Run();
+		Engine(const std::string&);
 
-	static std::unique_ptr<Engine> makeEngine();
-};
+	public:
+		~Engine();
+
+		int Run();
+
+		Update* GetUpdater() { return &m_Updater; };
+
+		static std::unique_ptr<Engine> makeEngine();
+	};
+
+}; // namespace engine

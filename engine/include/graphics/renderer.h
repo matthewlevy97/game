@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-namespace graphics {
+namespace engine::graphics {
     
 class Renderer
 {
@@ -13,4 +13,4 @@ public:
     void Frame(SDL_Renderer*);
 };
 
-} // namespace graphics
+} // namespace engine::graphics

@@ -1,6 +1,6 @@
 #include "graphics/renderer.h"
 
-namespace graphics {
+namespace engine::graphics {
 
 Renderer::Renderer()
 {}
@@ -15,4 +15,4 @@ void Renderer::Frame(SDL_Renderer* renderer)
     SDL_RenderFillRect(renderer, &fillRect );
 }
 
-}; // namespace graphics
+}; // namespace engine::graphics

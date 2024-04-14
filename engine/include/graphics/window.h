@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core/update.h"
 #include "graphics/renderer.h"
 
 #include "imgui.h"
@@ -9,7 +10,7 @@
 
 #include <string>
 
-namespace graphics {
+namespace engine::graphics {
 
 class Window {
 private:
@@ -23,10 +24,12 @@ private:
     size_t m_WindowScale;
     std::string m_WindowTitle;
 
-    bool setupSDL();
+    const engine::Update& m_UpdateController;
+
+    bool setupSDL(bool enableVSync = true);
     void updateGUIWindows(const ImGuiIO&);
 public:
-    Window(const std::string&);
+    Window(const std::string&, const engine::Update&);
     ~Window();
 
     bool IsRunning() const { return m_RunGraphicsLoop; }
@@ -35,4 +38,4 @@ public:
     void StopGraphicsLoop();
 };
 
-}; // namespace graphics
+}; // namespace engine::graphics
