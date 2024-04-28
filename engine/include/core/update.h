@@ -25,7 +25,8 @@ namespace engine {
         // @param dt    time in seconds
         void RunUpdate(float dt) const;
 
-        // Run at fixed interval
+        // Run at fixed interval.
+        // NOTE: Fixed updates are run on separate thread than graphics/main thread.
         void RunFixedUpdate() const;
 
         // @return Interval in milliseconds RunFixedUpdate() is called

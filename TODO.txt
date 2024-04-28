@@ -2,3 +2,5 @@ Major Systems
 [ ] Load Sprites
 [ ] Draw Sprites to Screen
 [ ] Camera movement
+
+Determine how to do render loop

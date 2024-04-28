@@ -10,7 +10,7 @@ namespace engine::graphics {
 Window::Window(const std::string& title, const engine::Update& updater)
     : m_WindowTitle(title), m_UpdateController(updater), m_RunGraphicsLoop(false), m_WindowScale(80)
 {
-    setupSDL();
+    setupSDL(false);
 }
 
 Window::~Window()
