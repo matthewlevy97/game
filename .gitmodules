@@ -6,3 +6,6 @@
 	path = deps/SDL
 	url = https://github.com/libsdl-org/SDL.git
 	branch = SDL2
+[submodule "deps/entt"]
+	path = deps/entt
+	url = https://github.com/skypjack/entt.git

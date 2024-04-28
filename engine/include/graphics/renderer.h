@@ -1,9 +1,11 @@
 #pragma once
 
+#include <memory>
+
 #include <SDL.h>
 
 namespace engine::graphics {
-    
+
 class Renderer
 {
 public:

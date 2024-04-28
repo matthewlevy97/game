@@ -12,6 +12,11 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(glm)
 
+FetchContent_Declare(gflags
+	GIT_REPOSITORY	https://github.com/gflags/gflags.git
+)
+FetchContent_GetProperties(gflags)
+
 FetchContent_Declare(
 	glog
 	GIT_REPOSITORY	https://github.com/google/glog.git

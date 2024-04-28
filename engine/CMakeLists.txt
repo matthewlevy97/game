@@ -15,6 +15,7 @@ ADD_IMGUI(engine)
 target_link_libraries(engine
     PRIVATE
         glog::glog
+        EnTT::EnTT
 )
 
 install(TARGETS

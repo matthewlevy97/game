@@ -6,6 +6,8 @@
 
 namespace engine {
 
+std::shared_ptr<Engine> Engine::s_engineSingleton(new Engine("Game Engine"));
+
 Engine::Engine(const std::string& title)
 {
 	m_Updater = Update();
@@ -42,7 +44,7 @@ int Engine::Run()
 	return 0;
 }
 
-std::unique_ptr<Engine> Engine::makeEngine()
+std::shared_ptr<Engine> Engine::GetEngine()
 {
 	// Hide from main()
 	static bool loggingInitialized = false;
@@ -51,8 +53,7 @@ std::unique_ptr<Engine> Engine::makeEngine()
 		google::InitGoogleLogging("GameEngine");
 		loggingInitialized = true;
 	}
-
-	return std::unique_ptr<Engine>(new Engine("Game Engine"));
+	return s_engineSingleton;
 }
 
 }; // namespace engine

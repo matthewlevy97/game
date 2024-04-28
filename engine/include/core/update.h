@@ -22,12 +22,13 @@ namespace engine {
         void RegisterFixedUpdate(FixedUpdateFunc&&);
 
         // Run once per frame.
-        // dt - time in seconds
+        // @param dt    time in seconds
         void RunUpdate(float dt) const;
 
         // Run at fixed interval
         void RunFixedUpdate() const;
 
+        // @return Interval in milliseconds RunFixedUpdate() is called
         unsigned long long FixedUpdateMs() const { return m_FixedUpdateMs; }
 
     private:

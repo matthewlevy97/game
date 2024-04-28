@@ -4,6 +4,6 @@
 
 int main(int argc, char **argv)
 {
-    auto engine = engine::Engine::makeEngine();
+    auto engine = engine::Engine::GetEngine();
     return engine->Run();
 }

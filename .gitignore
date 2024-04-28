@@ -3,3 +3,7 @@
 
 build/
 out/
+
+engine-log*
+
+imgui.ini

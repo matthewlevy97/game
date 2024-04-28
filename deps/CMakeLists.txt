@@ -5,6 +5,8 @@ set(SDL_LIBC ON CACHE BOOL "" FORCE)
 set(SDL_TEST OFF CACHE BOOL "" FORCE)
 add_subdirectory(SDL)
 
+add_subdirectory(entt)
+
 # Define IMGUI Settings
 function (ADD_IMGUI target)
 
