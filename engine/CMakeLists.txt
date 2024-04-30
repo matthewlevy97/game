@@ -11,14 +11,12 @@ target_include_directories(engine
 add_subdirectory(src/core)
 add_subdirectory(src/graphics)
 
-ADD_IMGUI(engine)
+ADD_DEPS(engine)
 target_link_libraries(engine
     PRIVATE
         glog::glog
-        EnTT::EnTT
 )
 
 install(TARGETS
     engine
-    SDL2
 )

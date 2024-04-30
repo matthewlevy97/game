@@ -1,12 +1,10 @@
 #pragma once
 
-#include <cstdint>
-
 namespace engine::ecs {
 
 struct position {
-    std::int32_t x;
-    std::int32_t y;
+    float x;
+    float y;
 };
 
 }; // namespace engine::ecs

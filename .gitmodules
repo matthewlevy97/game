@@ -9,3 +9,7 @@
 [submodule "deps/entt"]
 	path = deps/entt
 	url = https://github.com/skypjack/entt.git
+[submodule "deps/SDL_Image"]
+	path = deps/SDL_Image
+	url = https://github.com/libsdl-org/SDL_image.git
+	branch = SDL2
